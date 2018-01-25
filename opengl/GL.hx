@@ -2438,14 +2438,20 @@ extern class GL {
         inline static function glGetAttachedShaders(program:Int, maxCount:Int, count:Array<Int>, shaders:Array<Int>) : Void
           { untyped __cpp__("glGetAttachedShaders({0}, {1}, (GLsizei*)&({2}[0]), (GLuint*)&({3}[0]))", program, maxCount, count, shaders); }
 
-        inline static function glGetProgramInfoLog(program:Int, bufSize:Int, length:Array<Int>, infoLog:String) : Void
-          { untyped __cpp__("glGetProgramInfoLog({0}, {1}, (GLsizei*)&({2}[0]), {3})", program, bufSize, length, infoLog); }
+        inline static function glGetProgramInfoLog(shader:Int) : String
+          { untyped __cpp__("char __buffer[4096]; glGetProgramInfoLog({0}, 4096, (GLsizei*)0, &__buffer[0]);", program); 
+            return untyped __cpp__("::String(__buffer);");
+          }
 
         inline static function glGetProgramiv(program:Int, pname:Int, param:Array<Int>) : Void
           { untyped __cpp__("glGetProgramiv({0}, {1}, (GLint*)&({2}[0]))", program, pname, param); }
 
-        inline static function glGetShaderInfoLog(shader:Int, bufSize:Int, length:Array<Int>, infoLog:String) : Void
-          { untyped __cpp__("glGetShaderInfoLog({0}, {1}, (GLsizei*)&({2}[0]), {3})", shader, bufSize, length, infoLog); }
+        inline static function glGetShaderInfoLog(shader:Int) : String
+          { 
+            //This is bad
+            untyped __cpp__("char __buffer[4096]; glGetShaderInfoLog({0}, 4096, (GLsizei*)0, &__buffer[0])", shader); 
+            return untyped __cpp__("::String(__buffer)");
+          }
 
         inline static function glGetShaderSource(obj:Int, maxLength:Int, length:Array<Int>, source:String) : Void
           { untyped __cpp__("glGetShaderSource({0}, {1}, (GLsizei*)&({2}[0]), {3})", obj, maxLength, length, source); }
@@ -2570,10 +2576,13 @@ extern class GL {
         inline static function glVertexAttrib4usv(index:Int, v:Array<UInt>) : Void
           { untyped __cpp__("glVertexAttrib4usv({0}, (const GLushort*)&({1}[0]))", index, v); }
 
-        inline static function glVertexAttribPointer(index:Int, size:Int, type:Int, normalized:Bool, stride:Int, pointer:BytesData) : Void
-          { untyped __cpp__("glVertexAttribPointer({0}, {1}, {2}, {3}, {4}, (const void*)&({5}[0]))", index, size, type, normalized, stride, pointer); }
+        inline static function glVertexAttribPointer(index:Int, size:Int, type:Int, normalized:Bool, stride:Int, offset:Int) : Void
+          { untyped __cpp__("glVertexAttribPointer({0}, {1}, {2}, {3}, {4}, {5})", index, size, type, normalized, stride, offset); }
 
 
+
+    inline static function glShaderSource(shader:Int, count:Int, sources:Array<String>, lengths:Array<Int>) : Void
+      { untyped __cpp__("glShaderSource({0}, {1}, (const GLcharARB **)&({2}[0]), (const GLint*)&({3}[0]))", shader, count, sources, lengths); }
 
     // TODO functions
 
@@ -7265,7 +7274,6 @@ extern class GL {
         @:native('glValidateProgramARB')
         static function glValidateProgramARB(programObj:UInt) : Void;
 
-
         inline static function glGetObjectParameterfvARB(obj:UInt, pname:Int, params:Array<cpp.Float32>) : Void
           { untyped __cpp__("glGetObjectParameterfvARB({0}, {1}, (GLfloat*)&({2}[0]))", obj, pname, params); }
 
@@ -7278,8 +7286,8 @@ extern class GL {
         inline static function glGetUniformivARB(programObj:UInt, location:Int, params:Array<Int>) : Void
           { untyped __cpp__("glGetUniformivARB({0}, {1}, (GLint*)&({2}[0]))", programObj, location, params); }
 
-        inline static function glShaderSourceARB(shaderObj:UInt, count:Int, string:Array<String>, length:Array<Int>) : Void
-          { untyped __cpp__("glShaderSourceARB({0}, {1}, (const GLcharARB **)&({2}[0]), (const GLint*)&({3}[0]))", shaderObj, count, string, length); }
+        inline static function glShaderSourceARB(shaderObj:UInt, count:Int, strings:Array<String>, lengths:Array<Int>) : Void
+          { untyped __cpp__("glShaderSourceARB({0}, {1}, (const GLcharARB **)&({2}[0]), (const GLint*)&({3}[0]))", shaderObj, count, strings, lengths); }
 
         inline static function glUniform1fvARB(location:Int, count:Int, value:Array<cpp.Float32>) : Void
           { untyped __cpp__("glUniform1fvARB({0}, {1}, (const GLfloat*)&({2}[0]))", location, count, value); }
