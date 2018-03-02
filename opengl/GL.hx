@@ -1501,8 +1501,8 @@ extern class GL {
         inline static function glTexCoord4sv(v:Array<Int>) : Void
           { untyped __cpp__("glTexCoord4sv((const GLshort*)&({0}[0]))", v); }
 
-        inline static function glTexCoordPointer(size:Int, type:Int, stride:Int, pointer:BytesData) : Void
-          { untyped __cpp__("glTexCoordPointer({0}, {1}, {2}, (const void*)&({3}[0]))", size, type, stride, pointer); }
+        inline static function glTexCoordPointer(size:Int, type:Int, stride:Int, pointer:Int) : Void
+          { untyped __cpp__("glTexCoordPointer({0}, {1}, {2}, (const void*){3}", size, type, stride, pointer); }
 
         inline static function glTexEnvfv(target:Int, pname:Int, params:Array<cpp.Float32>) : Void
           { untyped __cpp__("glTexEnvfv({0}, {1}, (const GLfloat*)&({2}[0]))", target, pname, params); }
@@ -1573,8 +1573,8 @@ extern class GL {
         inline static function glVertex4sv(v:Array<Int>) : Void
           { untyped __cpp__("glVertex4sv((const GLshort*)&({0}[0]))", v); }
 
-        inline static function glVertexPointer(size:Int, type:Int, stride:Int, pointer:BytesData) : Void
-          { untyped __cpp__("glVertexPointer({0}, {1}, {2}, (const void*)&({3}[0]))", size, type, stride, pointer); }
+        inline static function glVertexPointer(size:Int, type:Int, stride:Int, pointer:Int) : Void
+          { untyped __cpp__("glVertexPointer({0}, {1}, {2}, (const void*){3}", size, type, stride, pointer); }
 
 
 
@@ -2016,8 +2016,8 @@ extern class GL {
         static function glWindowPos3s(x:Int, y:Int, z:Int) : Void;
 
 
-        inline static function glFogCoordPointer(type:Int, stride:Int, pointer:BytesData) : Void
-          { untyped __cpp__("glFogCoordPointer({0}, {1}, (const void*)&({2}[0]))", type, stride, pointer); }
+        inline static function glFogCoordPointer(type:Int, stride:Int, pointer:Int) : Void
+          { untyped __cpp__("glFogCoordPointer({0}, {1}, (const GLvoid*){2})", type, stride, pointer); }
 
         inline static function glFogCoorddv(coord:Array<cpp.Float64>) : Void
           { untyped __cpp__("glFogCoorddv((const GLdouble*)&({0}[0]))", coord); }
@@ -2061,8 +2061,8 @@ extern class GL {
         inline static function glSecondaryColor3usv(v:Array<UInt>) : Void
           { untyped __cpp__("glSecondaryColor3usv((const GLushort*)&({0}[0]))", v); }
 
-        inline static function glSecondaryColorPointer(size:Int, type:Int, stride:Int, pointer:BytesData) : Void
-          { untyped __cpp__("glSecondaryColorPointer({0}, {1}, {2}, (const void*)&({3}[0]))", size, type, stride, pointer); }
+        inline static function glSecondaryColorPointer(size:Int, type:Int, stride:Int, pointer:Int) : Void
+          { untyped __cpp__("glSecondaryColorPointer({0}, {1}, {2}, (const GLvoid*){3})", size, type, stride, pointer); }
 
         inline static function glWindowPos2dv(p:Array<cpp.Float64>) : Void
           { untyped __cpp__("glWindowPos2dv((const GLdouble*)&({0}[0]))", p); }
@@ -2169,10 +2169,10 @@ extern class GL {
 
 
         inline static function glBufferData(target:Int, size:Int, data:BytesData, usage:Int) : Void
-          { untyped __cpp__("glBufferData({0}, {1}, (const void*)&({2}[0]), {3})", target, size, data, usage); }
+          { untyped __cpp__("glBufferData({0}, {1}, (const GLvoid*)&({2}[0]), {3})", target, size, data, usage); }
 
         inline static function glBufferSubData(target:Int, offset:Int, size:Int, data:BytesData) : Void
-          { untyped __cpp__("glBufferSubData({0}, {1}, {2}, (const void*)&({3}[0]))", target, offset, size, data); }
+          { untyped __cpp__("glBufferSubData({0}, {1}, {2}, (const GLvoid*)&({3}[0]))", target, offset, size, data); }
 
         inline static function glDeleteBuffers(n:Int, buffers:Array<Int>) : Void
           { untyped __cpp__("glDeleteBuffers({0}, (const GLuint*)&({1}[0]))", n, buffers); }
@@ -3862,8 +3862,8 @@ extern class GL {
         static function glDrawRangeElementArrayAPPLE(mode:Int, start:Int, end:Int, first:Int, count:Int) : Void;
 
 
-        inline static function glElementPointerAPPLE(type:Int, pointer:BytesData) : Void
-          { untyped __cpp__("glElementPointerAPPLE({0}, (const void*)&({1}[0]))", type, pointer); }
+        inline static function glElementPointerAPPLE(type:Int, pointer:Int) : Void
+          { untyped __cpp__("glElementPointerAPPLE({0}, (const GLvoid*)&{1})", type, pointer); }
 
         inline static function glMultiDrawElementArrayAPPLE(mode:Int, first:Array<Int>, count:Array<Int>, primcount:Int) : Void
           { untyped __cpp__("glMultiDrawElementArrayAPPLE({0}, (const GLint*)&({1}[0]), (const GLsizei*)&({2}[0]), {3})", mode, first, count, primcount); }
