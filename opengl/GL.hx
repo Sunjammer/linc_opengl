@@ -2577,7 +2577,7 @@ extern class GL {
           { untyped __cpp__("glVertexAttrib4usv({0}, (const GLushort*)&({1}[0]))", index, v); }
 
         inline static function glVertexAttribPointer(index:Int, size:Int, type:Int, normalized:Bool, stride:Int, offset:Int) : Void
-          { untyped __cpp__("glVertexAttribPointer({0}, {1}, {2}, {3}, {4}, {5})", index, size, type, normalized, stride, offset); }
+          { untyped __cpp__("glVertexAttribPointer({0}, {1}, {2}, {3}, {4}, (const GLvoid*){5})", index, size, type, normalized, stride, offset); }
 
 
 
