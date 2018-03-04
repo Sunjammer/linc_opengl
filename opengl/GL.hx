@@ -2175,13 +2175,13 @@ extern class GL {
           { untyped __cpp__("glBufferSubData({0}, {1}, {2}, (const GLvoid*)&({3}[0]))", target, offset, size, data); }
 
         inline static function glDeleteBuffers(n:Int, buffers:Array<Int>) : Void
-          { untyped __cpp__("glDeleteBuffers({0}, (const GLuint*)&({1}[0]))", n, buffers); }
+          { force_include(); untyped __cpp__("glDeleteBuffers({0}, (const GLuint*)&({1}[0]))", n, buffers); }
 
         inline static function glDeleteQueries(n:Int, ids:Array<Int>) : Void
           { untyped __cpp__("glDeleteQueries({0}, (const GLuint*)&({1}[0]))", n, ids); }
 
         inline static function glGenBuffers(n:Int, buffers:Array<Int>) : Void
-          { untyped __cpp__("glGenBuffers({0}, (GLuint*)&({1}[0]))", n, buffers); }
+          { force_include(); untyped __cpp__("glGenBuffers({0}, (GLuint*)&({1}[0]))", n, buffers); }
 
         inline static function glGenQueries(n:Int, ids:Array<Int>) : Void
           { untyped __cpp__("glGenQueries({0}, (GLuint*)&({1}[0]))", n, ids); }
@@ -5436,16 +5436,16 @@ extern class GL {
 
 
         inline static function glDeleteFramebuffers(n:Int, framebuffers:Array<Int>) : Void
-          { untyped __cpp__("glDeleteFramebuffers({0}, (const GLuint*)&({1}[0]))", n, framebuffers); }
+          { force_include(); untyped __cpp__("glDeleteFramebuffers({0}, (const GLuint*)&({1}[0]))", n, framebuffers); }
 
         inline static function glDeleteRenderbuffers(n:Int, renderbuffers:Array<Int>) : Void
-          { untyped __cpp__("glDeleteRenderbuffers({0}, (const GLuint*)&({1}[0]))", n, renderbuffers); }
+          { force_include(); untyped __cpp__("glDeleteRenderbuffers({0}, (const GLuint*)&({1}[0]))", n, renderbuffers); }
 
         inline static function glGenFramebuffers(n:Int, framebuffers:Array<Int>) : Void
-          { untyped __cpp__("glGenFramebuffers({0}, (GLuint*)&({1}[0]))", n, framebuffers); }
+          { force_include(); untyped __cpp__("glGenFramebuffers({0}, (GLuint*)&({1}[0]))", n, framebuffers); }
 
         inline static function glGenRenderbuffers(n:Int, renderbuffers:Array<Int>) : Void
-          { untyped __cpp__("glGenRenderbuffers({0}, (GLuint*)&({1}[0]))", n, renderbuffers); }
+          { force_include(); untyped __cpp__("glGenRenderbuffers({0}, (GLuint*)&({1}[0]))", n, renderbuffers); }
 
         inline static function glGetFramebufferAttachmentParameteriv(target:Int, attachment:Int, pname:Int, params:Array<Int>) : Void
           { untyped __cpp__("glGetFramebufferAttachmentParameteriv({0}, {1}, {2}, (GLint*)&({3}[0]))", target, attachment, pname, params); }
@@ -18797,10 +18797,7 @@ extern class GL {
         @:native('glAddSwapHintRectWIN')
         static function glAddSwapHintRectWIN(x:Int, y:Int, width:Int, height:Int) : Void;
 
-
-
-
-
-
-
+        //Not sure why the approach in WebGL.hx doesn't work here
+        @:native("void") 
+        public static function force_include():Void{ };
 }
