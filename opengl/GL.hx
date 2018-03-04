@@ -2504,8 +2504,8 @@ extern class GL {
         inline static function glUniformMatrix3fv(location:Int, count:Int, transpose:Bool, value:Array<cpp.Float32>) : Void
           { untyped __cpp__("glUniformMatrix3fv({0}, {1}, {2}, (const GLfloat*)&({3}[0]))", location, count, transpose, value); }
 
-        inline static function glUniformMatrix4fv(location:Int, count:Int, transpose:Bool, value:Array<cpp.Float32>) : Void
-          { untyped __cpp__("glUniformMatrix4fv({0}, {1}, {2}, (const GLfloat*)&({3}[0]))", location, count, transpose, value); }
+        inline static function glUniformMatrix4fv(location:Int, count:Int, transpose:Bool, value:Array<Float>) : Void
+          { var f32s = value.map(function(f):cpp.Float32 { return f; }); untyped __cpp__("glUniformMatrix4fv({0}, {1}, {2}, (const GLfloat*)&({3}[0]))", location, count, transpose, f32s); }
 
         inline static function glVertexAttrib1dv(index:Int, v:Array<cpp.Float64>) : Void
           { untyped __cpp__("glVertexAttrib1dv({0}, (const GLdouble*)&({1}[0]))", index, v); }
