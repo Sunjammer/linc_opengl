@@ -1519,11 +1519,11 @@ extern class GL {
         inline static function glTexGeniv(coord:Int, pname:Int, params:Array<Int>) : Void
           { untyped __cpp__("glTexGeniv({0}, {1}, (const GLint*)&({2}[0]))", coord, pname, params); }
 
-        inline static function glTexImage1D(target:Int, level:Int, internalformat:Int, width:Int, border:Int, format:Int, type:Int, pixels:BytesData) : Void
-          { untyped __cpp__("glTexImage1D({0}, {1}, {2}, {3}, {4}, {5}, {6}, (const void*)&({7}[0]))", target, level, internalformat, width, border, format, type, pixels); }
+        inline static function glTexImage1D<T>(target:Int, level:Int, internalformat:Int, width:Int, border:Int, format:Int, type:Int, pixels:cpp.Star<T>) : Void
+          { untyped __cpp__("glTexImage1D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})", target, level, internalformat, width, border, format, type, pixels); }
 
-        inline static function glTexImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, format:Int, type:Int, pixels:BytesData) : Void
-          { untyped __cpp__("glTexImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)&({8}[0]))", target, level, internalformat, width, height, border, format, type, pixels); }
+        inline static function glTexImage2D<T>(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, format:Int, type:Int, pixels:cpp.Star<T>) : Void
+          { untyped __cpp__("glTexImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})", target, level, internalformat, width, height, border, format, type, pixels); }
 
         inline static function glTexParameterfv(target:Int, pname:Int, params:Array<cpp.Float32>) : Void
           { untyped __cpp__("glTexParameterfv({0}, {1}, (const GLfloat*)&({2}[0]))", target, pname, params); }
@@ -2168,11 +2168,11 @@ extern class GL {
         static function glUnmapBuffer(target:Int) : Bool;
 
 
-        inline static function glBufferData(target:Int, size:Int, data:BytesData, usage:Int) : Void
-          { untyped __cpp__("glBufferData({0}, {1}, (const GLvoid*)&({2}[0]), {3})", target, size, data, usage); }
+        inline static function glBufferData<T>(target:Int, size:Int, ptr:cpp.Star<T>, usage:Int) : Void
+          { untyped __cpp__("glBufferData({0}, {1}, {2}, {3})", target, size, ptr, usage); }
 
-        inline static function glBufferSubData(target:Int, offset:Int, size:Int, data:BytesData) : Void
-          { untyped __cpp__("glBufferSubData({0}, {1}, {2}, (const GLvoid*)&({3}[0]))", target, offset, size, data); }
+        inline static function glBufferSubData<T>(target:Int, offset:Int, size:Int, ptr:cpp.Star<T>) : Void
+          { untyped __cpp__("glBufferSubData({0}, {1}, {2}, {3})", target, offset, size, ptr); }
 
         inline static function glDeleteBuffers(n:Int, buffers:Array<Int>) : Void
           { force_include(); untyped __cpp__("glDeleteBuffers({0}, (const GLuint*)&({1}[0]))", n, buffers); }
@@ -2498,14 +2498,14 @@ extern class GL {
         inline static function glUniform4iv(location:Int, count:Int, value:Array<Int>) : Void
           { untyped __cpp__("glUniform4iv({0}, {1}, (const GLint*)&({2}[0]))", location, count, value); }
 
-        inline static function glUniformMatrix2fv(location:Int, count:Int, transpose:Bool, value:Array<cpp.Float32>) : Void
-          { untyped __cpp__("glUniformMatrix2fv({0}, {1}, {2}, (const GLfloat*)&({3}[0]))", location, count, transpose, value); }
+        inline static function glUniformMatrix2fv<T>(location:Int, count:Int, transpose:Bool, value:cpp.Star<T>) : Void
+          { untyped __cpp__("glUniformMatrix2fv({0}, {1}, {2}, {3})", location, count, transpose, value); }
 
-        inline static function glUniformMatrix3fv(location:Int, count:Int, transpose:Bool, value:Array<cpp.Float32>) : Void
-          { untyped __cpp__("glUniformMatrix3fv({0}, {1}, {2}, (const GLfloat*)&({3}[0]))", location, count, transpose, value); }
+        inline static function glUniformMatrix3fv<T>(location:Int, count:Int, transpose:Bool, value:cpp.Star<T>) : Void
+          { untyped __cpp__("glUniformMatrix3fv({0}, {1}, {2}, {3})", location, count, transpose, value); }
 
-        inline static function glUniformMatrix4fv(location:Int, count:Int, transpose:Bool, value:Array<Float>) : Void
-          { var f32s = value.map(function(f):cpp.Float32 { return f; }); untyped __cpp__("glUniformMatrix4fv({0}, {1}, {2}, (const GLfloat*)&({3}[0]))", location, count, transpose, f32s); }
+        inline static function glUniformMatrix4fv<T>(location:Int, count:Int, transpose:Bool, value:cpp.Star<T>) : Void
+          {  untyped __cpp__("glUniformMatrix4fv({0}, {1}, {2}, {3})", location, count, transpose, value); }
 
         inline static function glVertexAttrib1dv(index:Int, v:Array<cpp.Float64>) : Void
           { untyped __cpp__("glVertexAttrib1dv({0}, (const GLdouble*)&({1}[0]))", index, v); }
