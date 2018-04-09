@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef HXCPP_H
 #include <hxcpp.h>
-#endif
 #include <haxe/io/Bytes.h>
 
 #if defined(HX_ANDROID)
