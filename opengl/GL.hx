@@ -1641,14 +1641,14 @@ extern class GL {
         static function glCopyTexSubImage3D(target:Int, level:Int, xoffset:Int, yoffset:Int, zoffset:Int, x:Int, y:Int, width:Int, height:Int) : Void;
 
 
-        inline static function glDrawRangeElements(mode:Int, start:Int, end:Int, count:Int, type:Int, indices:BytesData) : Void
-          { untyped __cpp__("glDrawRangeElements({0}, {1}, {2}, {3}, {4}, (const void*)&({5}[0]))", mode, start, end, count, type, indices); }
+        inline static function glDrawRangeElements<T>(mode:Int, start:Int, end:Int, count:Int, type:Int, indices:cpp.Star<T>) : Void
+          { untyped __cpp__("glDrawRangeElements({0}, {1}, {2}, {3}, {4}, {5})", mode, start, end, count, type, indices); }
 
-        inline static function glTexImage3D(target:Int, level:Int, internalFormat:Int, width:Int, height:Int, depth:Int, border:Int, format:Int, type:Int, pixels:BytesData) : Void
-          { untyped __cpp__("glTexImage3D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, (const void*)&({9}[0]))", target, level, internalFormat, width, height, depth, border, format, type, pixels); }
+        inline static function glTexImage3D<T>(target:Int, level:Int, internalFormat:Int, width:Int, height:Int, depth:Int, border:Int, format:Int, type:Int, pixels:cpp.Star<T>) : Void
+          { untyped __cpp__("glTexImage3D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9})", target, level, internalFormat, width, height, depth, border, format, type, pixels); }
 
-        inline static function glTexSubImage3D(target:Int, level:Int, xoffset:Int, yoffset:Int, zoffset:Int, width:Int, height:Int, depth:Int, format:Int, type:Int, pixels:BytesData) : Void
-          { untyped __cpp__("glTexSubImage3D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, (const void*)&({10}[0]))", target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels); }
+        inline static function glTexSubImage3D<T>(target:Int, level:Int, xoffset:Int, yoffset:Int, zoffset:Int, width:Int, height:Int, depth:Int, format:Int, type:Int, pixels:cpp.Star<T>) : Void
+          { untyped __cpp__("glTexSubImage3D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10})", target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels); }
 
 
 
