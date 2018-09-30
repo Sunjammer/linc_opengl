@@ -1531,11 +1531,11 @@ extern class GL {
         inline static function glTexParameteriv(target:Int, pname:Int, params:Array<Int>) : Void
           { untyped __cpp__("glTexParameteriv({0}, {1}, (const GLint*)&({2}[0]))", target, pname, params); }
 
-        inline static function glTexSubImage1D(target:Int, level:Int, xoffset:Int, width:Int, format:Int, type:Int, pixels:BytesData) : Void
-          { untyped __cpp__("glTexSubImage1D({0}, {1}, {2}, {3}, {4}, {5}, (const void*)&({6}[0]))", target, level, xoffset, width, format, type, pixels); }
+        inline static function glTexSubImage1D<T>(target:Int, level:Int, xoffset:Int, width:Int, format:Int, type:Int, pixels:cpp.Star<T>) : Void
+          { untyped __cpp__("glTexSubImage1D({0}, {1}, {2}, {3}, {4}, {5}, {6})", target, level, xoffset, width, format, type, pixels); }
 
-        inline static function glTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, type:Int, pixels:BytesData) : Void
-          { untyped __cpp__("glTexSubImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)&({8}[0]))", target, level, xoffset, yoffset, width, height, format, type, pixels); }
+        inline static function glTexSubImage2D<T>(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, type:Int, pixels:cpp.Star<T>) : Void
+          { untyped __cpp__("glTexSubImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})", target, level, xoffset, yoffset, width, height, format, type, pixels); }
 
         inline static function glVertex2dv(v:Array<cpp.Float64>) : Void
           { untyped __cpp__("glVertex2dv((const GLdouble*)&({0}[0]))", v); }
