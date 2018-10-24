@@ -1188,8 +1188,8 @@ extern class GL {
         inline static function glDeleteTextures(n:Int, textures:Array<Int>) : Void
           { untyped __cpp__("glDeleteTextures({0}, (const GLuint*)&({1}[0]))", n, textures); }
 
-        inline static function glDrawElements(mode:Int, count:Int, type:Int, indices:BytesData) : Void
-          { untyped __cpp__("glDrawElements({0}, {1}, {2}, (const void*)&({3}[0]))", mode, count, type, indices); }
+        inline static function glDrawElements<T>(mode:Int, count:Int, type:Int, indices:cpp.Star<T>) : Void
+          { untyped __cpp__("glDrawElements({0}, {1}, {2}, {3})", mode, count, type, indices); }
 
         inline static function glDrawPixels(width:Int, height:Int, format:Int, type:Int, pixels:BytesData) : Void
           { untyped __cpp__("glDrawPixels({0}, {1}, {2}, {3}, (const void*)&({4}[0]))", width, height, format, type, pixels); }
