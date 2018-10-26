@@ -2991,8 +2991,8 @@ extern class GL {
         static function glTexBuffer(target:Int, internalFormat:Int, buffer:Int) : Void;
 
 
-        inline static function glDrawElementsInstanced(mode:Int, count:Int, type:Int, indices:BytesData, primcount:Int) : Void
-          { untyped __cpp__("glDrawElementsInstanced({0}, {1}, {2}, (const void*)&({3}[0]), {4})", mode, count, type, indices, primcount); }
+        inline static function glDrawElementsInstanced<T>(mode:Int, count:Int, type:Int, indices:cpp.Star<T>, primcount:Int) : Void
+          { untyped __cpp__("glDrawElementsInstanced({0}, {1}, {2}, {3}, {4})", mode, count, type, indices, primcount); }
 
 
 
