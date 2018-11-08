@@ -1233,8 +1233,8 @@ extern class GL {
         inline static function glGetFloatv(pname:Int, params:Array<cpp.Float32>) : Void
           { untyped __cpp__("glGetFloatv({0}, (GLfloat*)&({1}[0]))", pname, params); }
 
-        inline static function glGetIntegerv(pname:Int, params:Array<Int>) : Void
-          { untyped __cpp__("glGetIntegerv({0}, (GLint*)&({1}[0]))", pname, params); }
+        inline static function glGetIntegerv(pname:Int, params:cpp.Pointer<Int>) : Void
+          { untyped __cpp__("glGetIntegerv({0}, {1})", pname, params); }
 
         inline static function glGetLightfv(light:Int, pname:Int, params:Array<cpp.Float32>) : Void
           { untyped __cpp__("glGetLightfv({0}, {1}, (GLfloat*)&({2}[0]))", light, pname, params); }
@@ -8419,8 +8419,8 @@ extern class GL {
         inline static function glGetActiveUniformsiv(program:Int, uniformCount:Int, uniformIndices:Array<Int>, pname:Int, params:Array<Int>) : Void
           { untyped __cpp__("glGetActiveUniformsiv({0}, {1}, (const GLuint*)&({2}[0]), {3}, (GLint*)&({4}[0]))", program, uniformCount, uniformIndices, pname, params); }
 
-        inline static function glGetIntegeri_v(target:Int, index:Int, data:Array<Int>) : Void
-          { untyped __cpp__("glGetIntegeri_v({0}, {1}, (GLint*)&({2}[0]))", target, index, data); }
+        inline static function glGetIntegeri_v(target:Int, index:Int, data:cpp.Pointer<Int>) : Void
+          { untyped __cpp__("glGetIntegeri_v({0}, {1}, {2})", target, index, data); }
 
         inline static function glGetUniformIndices(program:Int, uniformCount:Int, uniformNames:Array<String>, uniformIndices:Array<Int>) : Void
           { untyped __cpp__("glGetUniformIndices({0}, {1}, (const GLchar* const *)&({2}[0]), (GLuint*)&({3}[0]))", program, uniformCount, uniformNames, uniformIndices); }
