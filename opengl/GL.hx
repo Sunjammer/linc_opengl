@@ -4400,9 +4400,8 @@ extern class GL {
 
     // GL_ARB_buffer_storage functions
 
-
-        inline static function glBufferStorage(target:Int, size:Int, data:BytesData, flags:Int) : Void
-          { untyped __cpp__("glBufferStorage({0}, {1}, (const void*)&({2}[0]), {3})", target, size, data, flags); }
+        inline static function glBufferStorage<T>(target:Int, size:Int, data:cpp.Star<T>, flags:Int) : Void
+          { untyped __cpp__("glBufferStorage({0}, {1}, {2}, {3})", target, size, data, flags); }
 
         inline static function glNamedBufferStorageEXT(buffer:Int, size:Int, data:BytesData, flags:Int) : Void
           { untyped __cpp__("glNamedBufferStorageEXT({0}, {1}, (const void*)&({2}[0]), {3})", buffer, size, data, flags); }
@@ -6102,14 +6101,8 @@ extern class GL {
         @:native('glFlushMappedBufferRange')
         static function glFlushMappedBufferRange(target:Int, offset:Int, length:Int) : Void;
 
-
-
-
-    // TODO functions
-
-            
-        // @:native('glMapBufferRange')
-        // static function glMapBufferRange(target:Int, offset:Int, length:Int, access:Int) : void *;
+        @:native('glMapBufferRange')
+        static function glMapBufferRange(target:Int, offset:Int, length:Int, access:Int) : cpp.RawPointer<Void>;
 
 
 //GL_ARB_matrix_palette
