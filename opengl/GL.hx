@@ -4282,11 +4282,11 @@ extern class GL {
         static function glDrawArraysInstancedBaseInstance(mode:Int, first:Int, count:Int, primcount:Int, baseinstance:Int) : Void;
 
 
-        inline static function glDrawElementsInstancedBaseInstance(mode:Int, count:Int, type:Int, indices:BytesData, primcount:Int, baseinstance:Int) : Void
-          { untyped __cpp__("glDrawElementsInstancedBaseInstance({0}, {1}, {2}, (const void*)&({3}[0]), {4}, {5})", mode, count, type, indices, primcount, baseinstance); }
+        inline static function glDrawElementsInstancedBaseInstance<T>(mode:Int, count:Int, type:Int, indices:cpp.Star<T>, primcount:Int, baseinstance:Int) : Void
+          { untyped __cpp__("glDrawElementsInstancedBaseInstance({0}, {1}, {2}, {3}, {4}, {5})", mode, count, type, indices, primcount, baseinstance); }
 
-        inline static function glDrawElementsInstancedBaseVertexBaseInstance(mode:Int, count:Int, type:Int, indices:BytesData, primcount:Int, basevertex:Int, baseinstance:Int) : Void
-          { untyped __cpp__("glDrawElementsInstancedBaseVertexBaseInstance({0}, {1}, {2}, (const void*)&({3}[0]), {4}, {5}, {6})", mode, count, type, indices, primcount, basevertex, baseinstance); }
+        inline static function glDrawElementsInstancedBaseVertexBaseInstance<T>(mode:Int, count:Int, type:Int, indices:cpp.Star<T>, primcount:Int, basevertex:Int, baseinstance:Int) : Void
+          { untyped __cpp__("glDrawElementsInstancedBaseVertexBaseInstance({0}, {1}, {2}, {3}, {4}, {5}, {6})", mode, count, type, indices, primcount, basevertex, baseinstance); }
 
 
 
@@ -7598,7 +7598,7 @@ extern class GL {
         inline static var GL_TIMEOUT_EXPIRED                                              = 0x911B;
         inline static var GL_CONDITION_SATISFIED                                          = 0x911C;
         inline static var GL_WAIT_FAILED                                                  = 0x911D;
-        // inline static var GL_TIMEOUT_IGNORED                                              = 0xFFFFFFFFFFFFFFFF;
+        //inline static var GL_TIMEOUT_IGNORED                                              = untyped __cpp__('0xFFFFFFFFFFFFFFFF');
 
 
 
