@@ -5,8 +5,13 @@ import haxe.io.Bytes;
 
 @:keep
 @:include('linc_opengl.h')
-@:native('GLsync')
+@:native('uintptr_t')
 extern class GLSync {}
+
+@:keep
+@:include('linc_opengl.h')
+@:native('GLDEBUGPROC')
+extern class GLDEBUGPROC {}
 
 @:keep
 abstract IntRef(cpp.Pointer<Int>) {
@@ -7605,20 +7610,28 @@ extern class GL {
 
     // GL_ARB_sync functions
 
-        @:native('glClientWaitSync')
-        static function glClientWaitSync(GLsync:GLSync, flags:Int, timeout:cpp.UInt64) : Int;
+        //@:native('glClientWaitSync')
+        static inline function glClientWaitSync(sync:GLSync, flags:Int, timeout:cpp.UInt64) : Int{
+          return untyped __cpp__('glClientWaitSync((GLsync){0},{1},{2})', sync, flags, timeout);
+        }
 
-        @:native('glDeleteSync')
-        static function glDeleteSync(GLsync:GLSync) : Void;
+        //@:native('glDeleteSync')
+        static inline function glDeleteSync(sync:GLSync) : Void{
+          return untyped __cpp__('glDeleteSync((GLsync){0})', sync);
+        }
 
-        @:native('glFenceSync')
-        static function glFenceSync(condition:Int, flags:Int) : GLSync;
+        //@:native('glFenceSync')
+        static inline function glFenceSync(condition:Int, flags:Int) : GLSync{
+          return untyped __cpp__('(uintptr_t)glFenceSync({0},{1})', condition, flags);
+        }
 
         @:native('glIsSync')
         static function glIsSync(GLsync:GLSync) : Bool;
 
-        @:native('glWaitSync')
-        static function glWaitSync(GLsync:GLSync, flags:Int, timeout:cpp.UInt64) : Void;
+        //@:native('glWaitSync')
+        static inline function glWaitSync(sync:GLSync, flags:Int, timeout:cpp.UInt64) : Void{
+          return untyped __cpp__('glWaitSync((GLsync){0},{1},{2})', sync, flags, timeout);
+        }
 
 
         inline static function glGetInteger64v(pname:Int, params:Array<cpp.Int64>) : Void
@@ -13960,8 +13973,8 @@ extern class GL {
         static function glPushDebugGroup(source:Int, id:Int, length:Int, message:String) : Void;
 
 
-        inline static function glDebugMessageControl(source:Int, type:Int, severity:Int, count:Int, ids:Array<Int>, enabled:Bool) : Void
-          { untyped __cpp__("glDebugMessageControl({0}, {1}, {2}, {3}, (const GLuint*)&({4}[0]), {5})", source, type, severity, count, ids, enabled); }
+        inline static function glDebugMessageControl(source:Int, type:Int, severity:Int, count:Int, ids:cpp.Star<Int>, enabled:Bool) : Void
+          { untyped __cpp__("glDebugMessageControl({0}, {1}, {2}, {3}, {4}, {5})", source, type, severity, count, ids, enabled); }
 
         inline static function glGetObjectLabel(identifier:Int, name:Int, bufSize:Int, length:Array<Int>, label:String) : Void
           { untyped __cpp__("glGetObjectLabel({0}, {1}, {2}, (GLsizei*)&({3}[0]), {4})", identifier, name, bufSize, length, label); }
@@ -13976,12 +13989,12 @@ extern class GL {
 
     // TODO functions
 
+        
+        inline static function glDebugMessageCallback<T>(callback:GLDEBUGPROC, userParam:cpp.Star<T>) : Void
+        { untyped __cpp__("glDebugMessageCallback({0}, {1})", callback, userParam); }
             
-        // inline static function glDebugMessageCallback(callback:GLDEBUGPROC, userParam:BytesData) : Void
-        // { untyped __cpp__("glDebugMessageCallback({0}, (const void*)&({1}[0]))", callback, userParam); }
-            
-        // inline static function glGetDebugMessageLog(count:Int, bufSize:Int, sources:GLenum*, types:GLenum*, ids:Array<Int>, severities:GLenum*, lengths:Array<Int>, messageLog:String) : Int
-        // { return untyped __cpp__("glGetDebugMessageLog({0}, {1}, {2}, {3}, (GLuint*)&({4}[0]), {5}, (GLsizei*)&({6}[0]), {7})", count, bufSize, sources, types, ids, severities, lengths, messageLog); }
+        /*inline static function glGetDebugMessageLog(count:Int, bufSize:Int, sources:GLenum*, types:GLenum*, ids:Array<Int>, severities:GLenum*, lengths:Array<Int>, messageLog:String) : Int
+        { return untyped __cpp__("glGetDebugMessageLog({0}, {1}, {2}, {3}, (GLuint*)&({4}[0]), {5}, (GLsizei*)&({6}[0]), {7})", count, bufSize, sources, types, ids, severities, lengths, messageLog); }*/
 
 
 //GL_KHR_no_error
