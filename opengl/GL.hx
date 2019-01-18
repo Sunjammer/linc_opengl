@@ -13963,8 +13963,9 @@ extern class GL {
         @:native('glDebugMessageInsert')
         static function glDebugMessageInsert(source:Int, type:Int, id:Int, severity:Int, length:Int, buf:String) : Void;
 
-        @:native('glObjectLabel')
-        static function glObjectLabel(identifier:Int, name:Int, length:Int, label:String) : Void;
+        inline static function glObjectLabel(identifier:Int, name:Int, label:String) : Void{
+          untyped __cpp__('glObjectLabel({0},{1},{2},{3})', identifier, name, label.length, label.c_str());
+        }
 
         @:native('glPopDebugGroup')
         static function glPopDebugGroup() : Void;
