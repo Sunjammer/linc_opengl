@@ -5,10 +5,12 @@
 
 namespace linc {
     namespace glew {
-
+        static int glewStatus = -1;
         inline int init() {
+            if(glewStatus!=-1)
+                return glewStatus;
             glewExperimental = GL_TRUE;
-            return glewInit();
+            return glewStatus = glewInit();
         }
 
     } //glew namespace
