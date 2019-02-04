@@ -18806,5 +18806,5 @@ extern class GL {
 
         //Not sure why the approach in WebGL.hx doesn't work here
         @:native("void") 
-        public static function force_include():Void{ };
+        public static function force_include():Void;
 }
